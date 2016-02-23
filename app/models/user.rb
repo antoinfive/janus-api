@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   has_many :stories, through: :projects
   has_many :snippets
   has_many :bookmarks
-  validates_presence_of :username, :uid, :provider
-  validates_uniqueness_of :username, :uid
+  validates_presence_of :username
+  validates_uniqueness_of :username
   has_secure_password
   before_save :verify_auth_token
 
