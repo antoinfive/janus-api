@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   end
 
   post "/users/sign_in", to: "sessions#create"
+  post "/api/v1/bookmarks/chrome", to: "api/v1/bookmarks#bookmark_from_chrome"
 
 end
