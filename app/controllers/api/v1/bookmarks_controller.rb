@@ -10,9 +10,10 @@ class Api::V1::BookmarksController < ApplicationController
 
   def bookmark_from_chrome
     binding.pry
-    user = User.find_by(auth_token: "Aw2ZFF2KlMIopT_p1OSu")
+    user = User.find_by(auth_token: params[:user][:token])
     bookmark = Bookmark.create(bookmark_params)
     user.bookmarks << bookmark
+    user.save(validate: false)
     render json: bookmark
   end
   def create
