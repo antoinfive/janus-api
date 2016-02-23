@@ -1,4 +1,5 @@
 class Api::V1::BookmarksController < ApplicationController
+  skip_before_action :authenticate!, only: [:bookmark_from_chrome]
   def index
     render json: current_user.all_bookmarks
   end
@@ -7,8 +8,15 @@ class Api::V1::BookmarksController < ApplicationController
     render json: Bookmark.find(params[:id])
   end
 
-  def create
+  def bookmark_from_chrome
+    user = User.find_by(auth_token: params[:user][:token])
     bookmark = Bookmark.create(bookmark_params)
+    user.bookmarks << bookmark
+    user.save(validate: false)
+    render json: bookmark
+  end
+  
+  def create
     bookmark.projects << jank_to_projects
     current_user.bookmarks << bookmark
     current_user.save
