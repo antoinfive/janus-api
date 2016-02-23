@@ -1,3 +1,7 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email, :photo, :uid
+  embed :ids, include: true
+  attributes :id, :username, :email
+  has_many :projects, each_serializer: ProjectsLightSerializer
+  has_many :bookmarks
+  has_many :snippets, each_serializer: SnippetLightSerializer
 end

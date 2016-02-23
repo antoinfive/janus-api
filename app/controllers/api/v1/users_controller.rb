@@ -5,6 +5,10 @@ class Api::V1::UsersController < ApplicationController
     render json: User.all
   end
 
+  def me
+    render json: current_user
+  end
+
   def create
     user = User.new(user_params)
     if user.save
