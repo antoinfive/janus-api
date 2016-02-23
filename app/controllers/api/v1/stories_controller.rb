@@ -1,7 +1,7 @@
 class Api::V1::StoriesController < ApplicationController
 
   def index
-    render json: current_project.stories
+    render json: current_user.stories
   end
 
   def show

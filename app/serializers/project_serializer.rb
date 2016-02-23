@@ -3,5 +3,5 @@ class ProjectSerializer < ActiveModel::Serializer
   attributes :id, :name, :github_link, :state, :description
   has_many :stories, :bookmarks
   has_many :snippets, each_serializer: SnippetLightSerializer
-  has_one :user
+  has_one :user, serializer: UserLightSerializer
 end
