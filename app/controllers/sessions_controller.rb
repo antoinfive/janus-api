@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
 
   def create
     user = User.authenticate(user_params)
-    binding.pry
     if user
       data = {
         token: user.auth_token,
