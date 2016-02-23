@@ -2,11 +2,8 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate!
 
   def create
-    parse = params[:auth_token]
-
-    # user = User.authenticate(user_params)
+    user = User.authenticate(user_params)
     binding.pry
-    user = User.find_by(auth_token: "Aw2ZFF2KlMIopT_p1OSu")
     if user
       data = {
         token: user.auth_token,

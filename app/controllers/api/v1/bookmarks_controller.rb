@@ -9,13 +9,13 @@ class Api::V1::BookmarksController < ApplicationController
   end
 
   def bookmark_from_chrome
-    binding.pry
     user = User.find_by(auth_token: params[:user][:token])
     bookmark = Bookmark.create(bookmark_params)
     user.bookmarks << bookmark
     user.save(validate: false)
     render json: bookmark
   end
+  
   def create
     bookmark.projects << jank_to_projects
     current_user.bookmarks << bookmark
