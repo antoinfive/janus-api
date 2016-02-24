@@ -15,8 +15,9 @@ class Api::V1::BookmarksController < ApplicationController
     user.save(validate: false)
     render json: bookmark
   end
-  
+
   def create
+    bookmark = Bookmark.create(bookmark_params)
     bookmark.projects << jank_to_projects
     current_user.bookmarks << bookmark
     current_user.save
